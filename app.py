@@ -35,8 +35,8 @@ def handleCall(keyword, which_file=None):
                     print_decorate(results)
 
 
-def print_decorate(the_list):
-    for i, l in enumerate(the_list['found']):
+def print_decorate(results):
+    for i, l in enumerate(results['found']):
         arrItem = l.split(",")
         domain = arrItem[0]
         username = arrItem[1]
