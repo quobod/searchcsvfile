@@ -1,7 +1,7 @@
 from classes.FileSearcher import LineFinder as Finder
 from classes.PasswordFileManager import PasswordFileHandler as Pfh
 from modules.ConsoleMessenger import CONSOLE_MESSENGER_SWITCH as cms
-from custom_modules.index import arguments, args_count
+from custom_modules.index import arguments, all_arguments, args_count
 
 finder = Finder()
 pfh = Pfh()
@@ -36,7 +36,7 @@ def handleCall(keyword, which_file=None):
 
 
 def print_decorate(results):
-    for i, l in enumerate(results['found']):
+    for i, l in enumerate(results['found'], start=1):
         arrItem = l.split(",")
         domain = arrItem[0]
         username = arrItem[1]
@@ -58,8 +58,11 @@ def print_results(results):
 
 def usage():
     custom = cms['custom']
-    usage = "{}".format("Use it or lose it")
-    print("\n\t\t{}\n".format(custom(usage, 213, 213, 68)))
+    count = "1-{}".format(pfh.password_count)
+    usage = "{}:\tpython {} [{}] <{}>".format(
+        "Synopsis", all_arguments[0], count, "search-term")
+    cusage = custom(usage, 223, 223, 168)
+    print("\n{}\n".format(cusage))
 
 
 if args_count == 2:
